@@ -1,0 +1,17 @@
+<h1>My Todos Items</h1>
+
+<%= form_tag todos_path, method: :get do %>
+  <%= text_field_tag :query, params[:query], placeholder: 'Search Todos' %>
+  <%= submit_tag 'Search' %>
+<% end %>
+
+<% if @todos.present? %>
+  <% @todos.each do |todo| %>
+    <h2><%= todo.title %></h2>
+    <p><%= todo.description %></p>
+  <% end %>
+<% else %>
+  <p>No todos found.</p>
+<% end %>
+
+<%= render 'form', todo: Todo.new %>
